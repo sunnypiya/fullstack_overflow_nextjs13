@@ -17,7 +17,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "nStackFlow",
+  title: "nStackOverflow",
   description:
     "A comunity-driven platform for asking and answering programming questions Get help, share knowledge, and collaborate with developers from around the world. Explore topics in web development, mobile app development, alogrithms, data structures and more.",
   icons: { icon: "assets/images/site-logo.svg" },
