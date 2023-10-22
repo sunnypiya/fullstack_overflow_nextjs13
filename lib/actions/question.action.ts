@@ -3,7 +3,6 @@
 import Question from "@/database/question.model";
 import { connectToDatabase } from "../mongoose";
 import Tag from "@/database/tag.model";
-import { Types } from 'mongoose';
 import { GetQuestionsParams, CreateQuestionParams } from "./shared.types";
 import User from "@/database/user.model";
 import { revalidatePath } from "next/cache";
