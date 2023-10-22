@@ -65,7 +65,7 @@ export async function POST(req: Request) {
         const mongoUser = await createUser({
             clerkId: id,
             name: `${firstName}${lastName ? ` ${lastName}` : ''}`,
-            email: emailAddresses.join(','),
+            email: emailAddresses[0].email_address,
             username: userName!,
             picture: imageUrl
         });
@@ -82,7 +82,7 @@ export async function POST(req: Request) {
             clerkId: id,
             updateData: {
                 name: `${firstName}${lastName ? ` ${lastName}` : ''}`,
-                email: emailAddresses.join(','),
+                email: emailAddresses[0].email_address,
                 username: userName!,
                 picture: imageUrl
             },
