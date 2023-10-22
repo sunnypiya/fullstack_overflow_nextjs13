@@ -16,12 +16,12 @@ export async function POST(req: Request) {
 
     // Get the headers
     const headerPayload = headers();
-    const svix_Id = headerPayload.get("svix-id");
-    const svix_Timestamp = headerPayload.get("svix-timestamp");
-    const svix_Signature = headerPayload.get("svix-signature");
+    const svixId = headerPayload.get("svix-id");
+    const svixTimestamp = headerPayload.get("svix-timestamp");
+    const svixSignature = headerPayload.get("svix-signature");
 
     // If there are no headers, error out
-    if (!svix_Id || !svix_Timestamp || !svix_Signature) {
+    if (!svixId || !svixTimestamp || !svixSignature) {
         return new Response('Error occured -- no svix headers', {
             status: 400
         })
@@ -39,9 +39,9 @@ export async function POST(req: Request) {
     // Verify the payload with the headers
     try {
         evt = wh.verify(body, {
-            "svix-id": svix_Id,
-            "svix-timestamp": svix_Timestamp,
-            "svix-signature": svix_Signature,
+            "svix-id": svixId,
+            "svix-timestamp": svixTimestamp,
+            "svix-signature": svixSignature,
         }) as WebhookEvent
     } catch (err) {
         console.error('Error verifying webhook:', err);
@@ -58,33 +58,33 @@ export async function POST(req: Request) {
     // console.log('Webhook body:', body)
 
     if (eventType === 'user.created') {
-        const { id, first_name, last_name, email_addresses, image_url, username } = evt.data;
+        const { id, first_name: firstName, last_name: lastName, email_addresses: emailAddresses, image_url: imageUrl, username: userName } = evt.data;
 
         // calling server action to save/update the user's data
 
         const mongoUser = await createUser({
             clerkId: id,
-            name: `${first_name}${last_name ? ` ${last_name}` : ''}`,
-            email: email_addresses.join(','),
-            username: username!,
-            picture: image_url
+            name: `${firstName}${lastName ? ` ${lastName}` : ''}`,
+            email: emailAddresses.join(','),
+            username: userName!,
+            picture: imageUrl
         });
 
         return NextResponse.json({ message: 'OK', user: mongoUser });
     }
 
     if (eventType === 'user.updated') {
-        const { id, first_name, last_name, email_addresses, image_url, username } = evt.data;
+        const { id, first_name: firstName, last_name: lastName, email_addresses: emailAddresses, image_url: imageUrl, username: userName } = evt.data;
 
         // calling server action to save/update the user's data
 
         const mongoUser = await updateUser({
             clerkId: id,
             updateData: {
-                name: `${first_name}${last_name ? ` ${last_name}` : ''}`,
-                email: email_addresses.join(','),
-                username: username!,
-                picture: image_url
+                name: `${firstName}${lastName ? ` ${lastName}` : ''}`,
+                email: emailAddresses.join(','),
+                username: userName!,
+                picture: imageUrl
             },
             path: `/profile/${id}`
         });
