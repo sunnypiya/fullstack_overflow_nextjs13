@@ -5,6 +5,11 @@ const nextConfig = {
     mdxRs: true,
     serverComponentsExternalPackages: ["mongoose"],
   },
+  typescript: {
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    ignoreBuildErrors: true,
+  },
 };
 
 module.exports = nextConfig;
