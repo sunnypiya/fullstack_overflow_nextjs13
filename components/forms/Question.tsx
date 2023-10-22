@@ -48,7 +48,7 @@ const Question = ({ mongoUserId }: Props) => {
       // make an async call to API ->  create a question
       // contain all form data
 
-      await createQuestion({
+      const isQuestionCreated = await createQuestion({
         title: values.title,
         content: values.explanation,
         tags: values.tags,
@@ -57,7 +57,9 @@ const Question = ({ mongoUserId }: Props) => {
       });
 
       // navigate to home page
-      router.push("/");
+      if (isQuestionCreated) {
+        router.push("/");
+      }
     } catch (e) {
       console.log(e);
     } finally {

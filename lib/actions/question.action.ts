@@ -6,13 +6,15 @@ import Tag from "@/database/tag.model";
 import { Types } from 'mongoose';
 import { GetQuestionsParams, CreateQuestionParams } from "./shared.types";
 import User from "@/database/user.model";
+import { revalidatePath } from "next/cache";
 
 export async function getQuestionns(parms: GetQuestionsParams) {
     try {
         connectToDatabase();
         const questions = await Question.find({})
             .populate({ path: 'tags', model: Tag })
-            .populate({ path: 'author', model: User });
+            .populate({ path: 'author', model: User })
+            .sort({ createdAt: -1 });
 
         return { questions };
     }
@@ -50,12 +52,14 @@ export async function createQuestion(params: CreateQuestionParams) {
             tagDocuments.push(existingTag._id);
         }
 
-        const ques = await Question.findByIdAndUpdate(question._id, {
+        await Question.findByIdAndUpdate(question._id, {
             $push: { tags: { $each: tagDocuments } }
         });
 
-        console.log('question', ques);
 
+
+        revalidatePath(path);
+        return true;
     }
     catch (e) {
         console.log(e);
