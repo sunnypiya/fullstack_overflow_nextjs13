@@ -4,59 +4,9 @@ import Filter from "@/components/shared/Filter";
 import NoResult from "@/components/shared/NoResult";
 import LocalSearchBar from "@/components/shared/search/LocalSearchBar";
 import { Button } from "@/components/ui/button";
-import { HomePageFilters, QuestionFilters } from "@/constants/filters";
+import { HomePageFilters } from "@/constants/filters";
 import { getQuestionns } from "@/lib/actions/question.action";
 import Link from "next/link";
-
-// const questions = [
-//   {
-//     _id: "1",
-//     title:
-//       "Best practices for data fetching in a Next.js application with Server-Side",
-//     tags: [
-//       {
-//         _id: "1",
-//         name: "python",
-//       },
-//       {
-//         _id: "2",
-//         name: "next.js",
-//       },
-//     ],
-//     author: {
-//       _id: "1",
-//       name: "John Doe",
-//       picture: "url/to/picture.jpg",
-//     },
-//     upvotes: 15000000,
-//     answers: [], // An empty array for answers, you might want to populate this with actual answer objects
-//     views: 1000000,
-//     createdAt: new Date("2022-09-01T12:00:00.000Z"),
-//   },
-//   {
-//     _id: "2",
-//     title: "Redux Toolkit Not Updating State as Expected",
-//     tags: [
-//       {
-//         _id: "1",
-//         name: "REACT.JS",
-//       },
-//       {
-//         _id: "2",
-//         name: "Redux",
-//       },
-//     ],
-//     author: {
-//       _id: "2",
-//       name: "Sk Arya",
-//       picture: "url/to/another-picture.jpg",
-//     },
-//     upvotes: 100,
-//     answers: [], // An empty array for answers, you might want to populate this with actual answer objects
-//     views: 1000,
-//     createdAt: new Date("2023-08-05T12:00:00.000Z"),
-//   },
-// ];
 
 export default async function Home() {
   // Fetching the question data from DB
