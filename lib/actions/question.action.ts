@@ -25,7 +25,7 @@ export async function getQuestionns(parms: GetQuestionsParams) {
 }
 
 export async function createQuestion(params: CreateQuestionParams) {
-    const { ObjectId } = Types;
+    // const { ObjectId } = Types;
     try {
         await connectToDatabase();
         const { title, content, tags, author, path } = params;
@@ -63,8 +63,5 @@ export async function createQuestion(params: CreateQuestionParams) {
     }
     catch (e) {
         console.log(e);
-    }
-    finally {
-
     }
 }

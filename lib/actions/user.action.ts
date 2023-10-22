@@ -31,7 +31,7 @@ export async function deleteUser(userData: DeleteUserParams) {
         // 2. questions, answers, comments, etc.
 
         // get user questions ids
-        const userQuestionIds = await Question.find({ author: user._id }).distinct('_id');
+        // const userQuestionIds = await Question.find({ author: user._id }).distinct('_id');
 
         // Now deleting user questions
         await Question.deleteMany({ author: user._id });
@@ -50,7 +50,8 @@ export async function updateUser(userData: UpdateUserParams) {
     try {
         connectToDatabase();
         const { clerkId, updateData, path } = userData;
-        const newUser = await User.findOneAndUpdate({ clerkId }, updateData, { new: true });
+        // const newUser = 
+        await User.findOneAndUpdate({ clerkId }, updateData, { new: true });
 
         revalidatePath(path);
     } catch (e) {

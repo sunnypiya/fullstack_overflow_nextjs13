@@ -1,11 +1,5 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import { sidebarLinks } from "@/constants";
 import { SignedOut } from "@clerk/nextjs";
 import Image from "next/image";

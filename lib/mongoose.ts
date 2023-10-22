@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
 
-let isConnected: boolean = false;
+const isConnected: boolean = false;
 
 export const connectToDatabase = async () => {
     mongoose.set('strictQuery', true);
-    debugger;
     if (!process.env.MONGODB_URL) {
         return console.log('missing mogo db url');
     }
