@@ -77,7 +77,7 @@ export async function POST(req: Request) {
         const { id, first_name: firstName, last_name: lastName, email_addresses: emailAddresses, image_url: imageUrl, username: userName } = evt.data;
 
         // calling server action to save/update the user's data
-
+    console.log('emailAddresses',emailAddresses);
         const mongoUser = await updateUser({
             clerkId: id,
             updateData: {
