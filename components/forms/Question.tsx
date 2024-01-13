@@ -21,6 +21,7 @@ import { Badge } from "../ui/badge";
 import Image from "next/image";
 import { createQuestion } from "@/lib/actions/question.action";
 import { usePathname, useRouter } from "next/navigation";
+import { useTheme } from "@/context/ThemeProvider";
 
 const type: any = "create";
 interface Props {
@@ -31,7 +32,7 @@ const Question = ({ mongoUserId }: Props) => {
   const [isSubmtting, SetIsSubmtting] = React.useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  // 1. Define your form.
+  // 1. Defining the form.
   const form = useForm<z.infer<typeof QuestionsSchema>>({
     resolver: zodResolver(QuestionsSchema),
     defaultValues: {
@@ -40,6 +41,7 @@ const Question = ({ mongoUserId }: Props) => {
       tags: [],
     },
   });
+  const { mode } = useTheme();
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
@@ -176,6 +178,8 @@ const Question = ({ mongoUserId }: Props) => {
                         "removeformat | help",
                       content_style:
                         "body { font-family:Inter; font-size:16px }",
+                      skin: mode === "dark" ? "oxide-dark" : "oxide",
+                      content_css: mode === "dark" ? "dark" : "light",
                     }}
                   />
                 </div>

@@ -8,8 +8,8 @@ interface Props {
   value: string | number;
   title: string;
   textStyles: string;
-  href: string;
-  isAuthor: Boolean;
+  href?: string;
+  isAuthor?: Boolean;
 }
 const Metric = ({
   alt,

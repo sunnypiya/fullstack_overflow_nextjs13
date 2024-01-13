@@ -8,24 +8,35 @@ interface Props {
   description: string;
   link: string;
   linkTitle: string;
+  showImages?: boolean;
 }
-const NoResult = ({ title, description, link, linkTitle }: Props) => {
+const NoResult = ({
+  title,
+  description,
+  link,
+  linkTitle,
+  showImages,
+}: Props) => {
   return (
     <div className="mt-10 flex flex-col w-full items-center justify-center">
-      <Image
-        src={"/assets/images/light-illustration.png"}
-        width={270}
-        height={200}
-        alt="no result illustration"
-        className="block object-contain dark:hidden"
-      />
-      <Image
-        src={"/assets/images/dark-illustration.png"}
-        width={270}
-        height={200}
-        alt="no result illustration"
-        className="hidden object-contain dark:flex"
-      />
+      {showImages && (
+        <>
+          <Image
+            src={"/assets/images/light-illustration.png"}
+            width={270}
+            height={200}
+            alt="no result illustration"
+            className="block object-contain dark:hidden"
+          />
+          <Image
+            src={"/assets/images/dark-illustration.png"}
+            width={270}
+            height={200}
+            alt="no result illustration"
+            className="hidden object-contain dark:flex"
+          />
+        </>
+      )}
 
       <h2 className="h2-bold text-dark200_light900 mt-8">{title}</h2>
       <p className="body-regular text-dark500_light700 my-3.5 max-w-md text-center">

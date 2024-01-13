@@ -16,7 +16,7 @@ interface Props {
     name: string;
     picture: string;
   };
-  upvotes: number;
+  upvotes: string[];
   answers: Array<object>;
   views: number;
   createdAt: Date;
@@ -39,7 +39,7 @@ const QuestionCard = ({
           <span className="subtle-regular text-dark400_light700 line-clamp-1 flex sm:hidden">
             {getTimeStamp(createdAt)}
           </span>
-          <Link href={`questions/${_id}`}>
+          <Link href={`/questions/${_id}`}>
             <h3 className="sm:h3-semibold base-semibold  text-dark200_light900 line-clamp-1 flex-1">
               {title}
             </h3>
@@ -72,7 +72,7 @@ const QuestionCard = ({
         <Metric
           imgUrl={"/assets/icons/like.svg"}
           alt="Upvotes"
-          value={formatNumber(upvotes)}
+          value={formatNumber(upvotes.length)}
           title=" Votes"
           textStyles={"small-medium text-dark400_light800"}
           href="/"
@@ -80,7 +80,7 @@ const QuestionCard = ({
         />
         <Metric
           imgUrl={"/assets/icons/message.svg"}
-          alt="Upvotes"
+          alt="Message"
           value={formatNumber(answers.length)}
           title=" Answers"
           textStyles={"small-medium text-dark400_light800"}
@@ -89,7 +89,7 @@ const QuestionCard = ({
         />
         <Metric
           imgUrl={"/assets/icons/eye.svg"}
-          alt="Upvotes"
+          alt="eye"
           value={formatNumber(views)}
           title=" Views"
           textStyles={"small-medium text-dark400_light800"}
